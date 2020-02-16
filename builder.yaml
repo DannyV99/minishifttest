@@ -1,0 +1,6 @@
+source:
+  git: 
+    uri: "https://github.com/DannyV99/minishifttest.git"
+    ref: "master"
+  contextDir: "app/dir" 
+  #dockerfile: 
