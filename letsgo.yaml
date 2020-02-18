@@ -1,0 +1,48 @@
+apiVersion: build.openshift.io/v1
+kind: BuildConfig
+metadata:
+  annotations:
+    openshift.io/generated-by: OpenShiftWebConsole
+  creationTimestamp: '2020-02-17T20:21:36Z'
+  labels:
+    app: letsgo
+  name: letsgo
+  namespace: letsgo
+  resourceVersion: '139790'
+  selfLink: /apis/build.openshift.io/v1/namespaces/letsgo/buildconfigs/letsgo
+  uid: 18ab53aa-51c3-11ea-9cde-080027e7355d
+spec:
+  nodeSelector: null
+  output:
+    to:
+      kind: ImageStreamTag
+      name: 'letsgo:latest'
+  postCommit: {}
+  resources: {}
+  runPolicy: Serial
+  source:
+    git:
+      ref: master
+      uri: 'https://github.com/DannyV99/minishifttest.git'
+    type: Git
+  strategy:
+    sourceStrategy:
+      from:
+        kind: ImageStreamTag
+        name: 'nodejs:10'
+        namespace: openshift
+    type: Source
+  triggers:
+    - generic:
+        secret: ae73a4c72d8af233
+      type: Generic
+    - github:
+        secret: 131b6ad4f19ac3d7
+      type: GitHub
+    - imageChange:
+        lastTriggeredImageID: >-
+          172.30.1.1:5000/openshift/nodejs@sha256:3cc041334eef8d5853078a0190e46a2998a70ad98320db512968f1de0561705e
+      type: ImageChange
+    - type: ConfigChange
+status:
+  lastVersion: 2
